@@ -13,8 +13,7 @@ getParams <- function(logfile) {
   raw <- readLines(logfile)
   params <- do.call(rbind, strsplit(raw[grep("\\bIteration\\b", raw):length(raw)], "\t"))[1, ]
   params <- params[c(2:length(params))]
-  params <- chartr(" ()", "...", params)
+  params <- chartr(" ()^-", ".....", params)
   return(params)
 }
-
 

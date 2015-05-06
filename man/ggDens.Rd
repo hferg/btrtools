@@ -4,10 +4,10 @@
 \alias{ggDens}
 \title{ggDens}
 \usage{
-ggDens(pars)
+ggDens(output, pars)
 }
 \arguments{
-\item{pars}{The paramater you want to see an autocorrelation plot for.}
+\item{dat}{The vector of paramater you want to see an autocorrelation plot for.}
 }
 \description{
 Make a density plot for an MCMC parameter using ggplot2.

@@ -15,19 +15,7 @@
 #' plotPosterior(cool-data.txt, params[c(1:2)])
 
 plotPosts <- function(logfile, pars, fill = "dodgerblue", cols = 2) {
-  raw <- readLines(logfile)
-  model <- gsub(" ", "", raw[2])
-  output <- do.call(rbind, strsplit(raw[grep("\\bIteration\\b", raw):length(raw)], "\t"))
-  params <- output[1, ]
-  colnames(output) <- params 
-  output <- output[c(2:nrow(output)), ]
-  output <- data.frame(output, stringsAsFactors = FALSE)
-  for (i in 1:ncol(output)) {
-    if (colnames(output)[i] != "Model.string") {
-      output[ ,i] <- as.numeric(output[ ,i])
-    }
-  }
- 
+  output <- btmcmc(logfile) 
   if (length(pars) == 1) {
     bwidth <- 3.5 * sd(output[ ,pars]) * length(output[ ,pars]) ^ -(1/3)
  
@@ -49,7 +37,7 @@ plotPosts <- function(logfile, pars, fill = "dodgerblue", cols = 2) {
         geom_histogram(color = "darkgray", binwidth = bwidth, fill = fill) +
         scale_x_continuous(paste(pars[i]))
     }
-    return(multiplot(plotlist = plots, cols = cols))
+    return(suppressWarnings(multiplot(plotlist = plots, cols = cols)))
   }
 }
 

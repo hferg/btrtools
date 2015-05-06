@@ -4,9 +4,11 @@
 \alias{ggTrace}
 \title{ggTrace}
 \usage{
-ggTrace(pars)
+ggTrace(output, pars)
 }
 \arguments{
+\item{output}{BayesTraits MCMC output - output from btmcmc function.}
+
 \item{pars}{The paramater you want to see an autocorrelation plot for.}
 }
 \description{

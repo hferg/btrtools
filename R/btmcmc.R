@@ -5,6 +5,7 @@
 #' other MCMC manipulations and so on.
 #' @param logfile The name of the logfile of the BayesTraits analysis.
 #' @return A data frame containing the sample from the BayesTrait mcmc.
+#' @export
 
 btmcmc <- function(logfile) {
   raw <- readLines(logfile)

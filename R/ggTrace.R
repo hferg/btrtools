@@ -1,12 +1,14 @@
 #' ggTrace
 #'
 #' Make a trace plot for an MCMC parameter using ggplot2.
+#' @param output BayesTraits MCMC output - output from btmcmc function.
 #' @param pars The paramater you want to see an autocorrelation plot for.
 
-ggTrace <- function(pars){
-  z <- ggplot(data.frame(Iteration = c(1:length(pars)), p = pars), aes(x = Iteration, y = p)) +
+ggTrace <- function(output, pars){
+  dat <- output[ ,pars]
+  z <- ggplot(data.frame(Iteration = c(1:length(dat)), p = dat), aes(x = Iteration, y = p)) +
     geom_line(color = "dodgerblue") +
-    theme(plot.background = element_rect(color = "darkgray"))
+    ggtitle(paste(pars))
   return(z)
 }
 
