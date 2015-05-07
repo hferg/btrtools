@@ -5,12 +5,12 @@
 #' instead, which has, in decimal form, the fraction of values <0 and the 
 #' fraction >0.
 #' @param logfile The name of the BayesTraits output logfile.
-#' @params pars A vector of parameters to plot/summarise
+#' @param pars A vector of parameters to plot/summarise
 #' @param cols The number of columns to plot into (if number of pars >1)
 #' @param value The value against which to test (defaults to zero)
 #' @param plot If true, a histogram coloured according to value is plotted. If false, a table summarising the posterior with respect to value is printed to screen.
 #' @export
-#' @keyword significance test testing posterior
+#' @keywords significance test testing posterior
 #' @examples
 #' zeroTest("cool-data.log", "Alpha")
 #' zeroTest("cool-data.log", c("Alpha", "Beta.2"))
