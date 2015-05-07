@@ -14,6 +14,7 @@
 
 paramLh <- function(logfile, pars, cols = 2) {
   output <- btmcmc(logfile)
+  
   if (length(pars) == 1) {
     p <- data.frame(Lh = output[ ,"Lh"], output[ ,pars])
     colnames(p) <- c("Lh", pars)
@@ -23,10 +24,12 @@ paramLh <- function(logfile, pars, cols = 2) {
   } else {
     p <- data.frame(Lh = output[ ,"Lh"], output[ ,pars])
     plots <- list()
+    
     for (i in 1:length(pars)) {
       plots[[i]] <- ggplot(p, aes_string(x = pars[i], y = "Lh")) +
         geom_point(colour = "dodgerblue")
     }
+    
   return(multiplot(plotlist = plots, cols = cols))
   }
 }

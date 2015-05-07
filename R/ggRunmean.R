@@ -8,6 +8,7 @@ ggRunmean <- function(output, pars){
   z <- ggplot(data.frame(Iteration = c(1:length(runmeans)), runningmean = runmeans), aes(x = Iteration, y = runningmean)) +
     geom_line(color = "dodgerblue") +
     ggtitle(paste(pars))
+ 
   return(z)
 }
 

@@ -6,11 +6,13 @@
 #' @export
 
 viewLogfile <- function(logfile, n = "max") {
+  
   if (n == "max") {
     out <- btmcmc(logfile)
   } else {
     out <- head(btmcmc(logfile), n)
   }
+  
   return(out)
 }
 

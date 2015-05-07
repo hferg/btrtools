@@ -9,6 +9,7 @@ ggTrace <- function(output, pars){
   z <- ggplot(data.frame(Iteration = c(1:length(dat)), p = dat), aes(x = Iteration, y = p)) +
     geom_line(color = "dodgerblue") +
     ggtitle(paste(pars))
+ 
   return(z)
 }
 

@@ -24,6 +24,7 @@ getPostStats <- function(logfile, params) {
   params.tmp <- params[which(!params %in% params.exc)]
   res <- matrix(ncol = 5, nrow = length(params.tmp))
   colnames(res) <- c("param", "mean", "median", "mode", "sd")
+  
   for (i in 1:length(params.tmp)) {
     print(params.tmp[i])
     res[i, 1] <- params.tmp[i]
@@ -32,6 +33,7 @@ getPostStats <- function(logfile, params) {
     res[i, 4] <- round(modeStat(output[params.tmp[i]][ ,1]), 4)
     res[i, 5] <- round(sd(output[params.tmp[i]][ ,1]), 4)
   }
+  
   return(data.frame(res))
 }
 

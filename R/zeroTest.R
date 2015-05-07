@@ -19,9 +19,11 @@
 
 zeroTest <- function(logfile, pars, cols = 2, plot = TRUE, value = 0) {
   output <- btmcmc(logfile)
+  
   if (plot == TRUE) {
     plot.cols <- c("orangered", "dodgerblue")
     names(plot.cols) <- c("< 0", ">= 0")
+    
     if (length(pars) == 1) {
       bwidth <- 3.5 * sd(output[ ,pars]) * length(output[ ,pars]) ^ -(1/3)
       p <- data.frame(p = output[ ,pars], z = NA)
@@ -34,6 +36,7 @@ zeroTest <- function(logfile, pars, cols = 2, plot = TRUE, value = 0) {
       return(ret)
     } else {
       plots <- list()
+      
       for (i in 1:length(pars)) {
         bwidth <- 3.5 * sd(output[ ,pars[i]]) * length(output[ ,pars[i]]) ^ -(1/3)
         p <- data.frame(p = output[ ,pars[i]], z = NA)
@@ -43,7 +46,8 @@ zeroTest <- function(logfile, pars, cols = 2, plot = TRUE, value = 0) {
         plots[[i]] <- ggplot(p, aes_string(x = pars[i], fill = "z")) +
           geom_histogram(colour = "darkgrey", binwidth = bwidth) +
           scale_fill_manual(name = "", values = plot.cols)
-      }  
+      }
+            
     return(suppressWarnings(multiplot(plotlist = plots, cols = cols)))
     }
   } else {
@@ -55,6 +59,7 @@ zeroTest <- function(logfile, pars, cols = 2, plot = TRUE, value = 0) {
       res[i ,2] <- sum(output[ ,pars[i]] < 0)
       res[i ,3] <- sum(output[ ,pars[i]] >= 0) / sum(output[ ,pars[i]] < 0)
     }
+    
   return(res)
   }
 }

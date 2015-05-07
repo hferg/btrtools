@@ -16,6 +16,7 @@
 
 plotPosts <- function(logfile, pars, fill = "dodgerblue", cols = 2) {
   output <- btmcmc(logfile) 
+  
   if (length(pars) == 1) {
     bwidth <- 3.5 * sd(output[ ,pars]) * length(output[ ,pars]) ^ -(1/3)
  
@@ -28,15 +29,18 @@ plotPosts <- function(logfile, pars, fill = "dodgerblue", cols = 2) {
         geom_histogram(color = "darkgray", binwidth = bwidth, fill = fill) +
         scale_x_continuous(paste(pars))
     }
+    
   return(suppressWarnings(ret))
   } else {
     plots <- list()
+    
     for (i in 1:length(pars)) {
           bwidth <- 3.5 * sd(output[ ,pars[i]]) * length(output[ ,pars[i]]) ^ -(1/3)
       plots[[i]] <- ggplot(data.frame(p = output[ ,pars[i]]), aes(x = p)) +
         geom_histogram(color = "darkgray", binwidth = bwidth, fill = fill) +
         scale_x_continuous(paste(pars[i]))
     }
+    
     return(suppressWarnings(multiplot(plotlist = plots, cols = cols)))
   }
 }

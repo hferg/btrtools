@@ -9,6 +9,7 @@ ggDens <- function(output, pars){
   z <- ggplot(data.frame(p = dat), aes(x = p)) +
     geom_density(alpha = 0.3, fill = "dodgerblue", binwidth = bw) +
     ggtitle(paste(pars))
+ 
   return(z)
 }
 

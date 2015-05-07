@@ -20,6 +20,7 @@ compareStones <- function(comp, simp) {
 
   logBF <- 2 * (marg.lh.comp - marg.lh.simp)
   evidence <- vector()
+  
   if (logBF < 2) {
     evidence <- "Weak evidence for complex model"
     } else if (logBF >= 2 && logBF < 5) {
@@ -29,6 +30,7 @@ compareStones <- function(comp, simp) {
     } else if (logBF > 10) {
       evidence <- "Very strong evidence for complex model"
     }
+    
   names(logBF) <- "log BF"
   return(logBF)  
 }

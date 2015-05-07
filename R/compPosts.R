@@ -12,27 +12,35 @@
 #' plotPosterior(cool-data.txt, params[c(1:2)])
 
 compPosts <- function(logs, pars) {
+  
   if (length(logs) == 1) {
     output <- btmcmc(logs)
   } else {
     output <- lapply(logs, btmcmc)
   }
+  
   if (length(logs) == 1) {
     ps <- list()
+    
     for (i in 1:length(pars)) {
       ps[[i]] <- data.frame(d = output[ ,pars[i]], id = pars[i])
-    }  
+    }
+    
     p <- do.call(rbind, ps)
   } else {
     ps <- list()
+    
     for (i in 1:length(output)) {
       ps[[i]] <- data.frame(d = output[[i]][ ,pars], id = logs[i])
     }
+    
     p <- do.call(rbind, ps)
   }
+  
   bwidth <- 3.5 * sd(p$d) * length(p$d) ^ -(1/3)
   ret <- ggplot(p, aes(x = d, fill = id)) +
     geom_histogram(binwidth = bwidth, alpha = 0.5, position = "identity")
+  
   return(ret)
 }
 

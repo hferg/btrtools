@@ -13,6 +13,7 @@
 #' paramDiagnostic("cool-data.log", params, type = "trace", cols = 3)
 
 paramDiagnostic <- function(logfile, pars, type = NULL, cols = 2) {
+ 
   if (length(pars) == 1) {
     output <- btmcmc(logfile)
     ac <- ggAutoCor(output, pars, conf = 0.95)
@@ -21,10 +22,13 @@ paramDiagnostic <- function(logfile, pars, type = NULL, cols = 2) {
     rm <- ggRunmean(output, pars)
     plots <- list(ac, dn, tc, rm)
   } else {
+    
     if (is.null(type)) {
       return(print("Must specify plot type"))
     }
+  
     plots <- list()
+
     for (i in 1:length(pars)) {
       if (type == "autocor") {
         plots[[i]] <- ggAutoCor(output, pars[i], conf = 0.95)
@@ -35,8 +39,10 @@ paramDiagnostic <- function(logfile, pars, type = NULL, cols = 2) {
       } else if (type == "runmean") {
         plots[[i]] <- ggRunmean(output, pars[i])
       }
+      
     }
   }
+  
   return(suppressWarnings(multiplot(plotlist = plots, cols = cols)))
 }
 
