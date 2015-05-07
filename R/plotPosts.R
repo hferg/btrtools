@@ -35,7 +35,12 @@ plotPosts <- function(logfile, pars, fill = "dodgerblue", cols = 2) {
     plots <- list()
     
     for (i in 1:length(pars)) {
-          bwidth <- 3.5 * sd(output[ ,pars[i]]) * length(output[ ,pars[i]]) ^ -(1/3)
+      bwidth <- 3.5 * sd(output[ ,pars[i]]) * length(output[ ,pars[i]]) ^ -(1/3)
+      
+      if (bwidth == 0) {
+        bwidth <- 1
+        }
+      
       plots[[i]] <- ggplot(data.frame(p = output[ ,pars[i]]), aes(x = p)) +
         geom_histogram(color = "darkgray", binwidth = bwidth, fill = fill) +
         scale_x_continuous(paste(pars[i]))
