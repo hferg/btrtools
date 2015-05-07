@@ -13,9 +13,9 @@
 #' paramDiagnostic("cool-data.log", params, type = "trace", cols = 3)
 
 paramDiagnostic <- function(logfile, pars, type = NULL, cols = 2) {
- 
+  output <- btmcmc(logfile)
+  
   if (length(pars) == 1) {
-    output <- btmcmc(logfile)
     ac <- ggAutoCor(output, pars, conf = 0.95)
     dn <- ggDens(output, pars)
     tc <- ggTrace(output, pars)
