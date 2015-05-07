@@ -3,9 +3,7 @@
 #' @name BTRTools
 #' @author Henry Ferguson-Gow
 #' @docType package
-#' @import ggplot2
-#' @import gridExtra
+#' @import ggplot2, gridExtra
 
 NULL
-
 
