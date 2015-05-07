@@ -28,7 +28,7 @@ plotPosts <- function(logfile, pars, fill = "dodgerblue", cols = 2) {
         geom_histogram(color = "darkgray", binwidth = bwidth, fill = fill) +
         scale_x_continuous(paste(pars))
     }
-  return(ret)
+  return(suppressWarnings(ret))
   } else {
     plots <- list()
     for (i in 1:length(pars)) {
