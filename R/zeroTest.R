@@ -28,8 +28,8 @@ zeroTest <- function(logfile, pars, cols = 2, plot = TRUE, value = 0) {
       bwidth <- 3.5 * sd(output[ ,pars]) * length(output[ ,pars]) ^ -(1/3)
       p <- data.frame(p = output[ ,pars], z = NA)
       colnames(p) <- c(pars, "z")
-      p$z[which(p[ ,pars] < 0)] <- "< 0"
-      p$z[which(p[ ,pars] >= 0)] <- ">= 0"
+      p$z[which(p[ ,pars] < value)] <- "< 0"
+      p$z[which(p[ ,pars] >= value)] <- ">= 0"
       ret <- ggplot(p, aes_string(x = pars, fill = "z")) +
         geom_histogram(colour = "darkgray", binwidth = bwidth) +
         scale_fill_manual(name = "", values = plot.cols)
@@ -41,8 +41,8 @@ zeroTest <- function(logfile, pars, cols = 2, plot = TRUE, value = 0) {
         bwidth <- 3.5 * sd(output[ ,pars[i]]) * length(output[ ,pars[i]]) ^ -(1/3)
         p <- data.frame(p = output[ ,pars[i]], z = NA)
         colnames(p) <- c(pars[i], "z")
-        p$z[which(p[ ,pars[i]] < 0)] <- "< 0"
-        p$z[which(p[ ,pars[i]] >= 0)] <- ">= 0"
+        p$z[which(p[ ,pars[i]] < value)] <- "< 0"
+        p$z[which(p[ ,pars[i]] >= value)] <- ">= 0"
         plots[[i]] <- ggplot(p, aes_string(x = pars[i], fill = "z")) +
           geom_histogram(colour = "darkgrey", binwidth = bwidth) +
           scale_fill_manual(name = "", values = plot.cols)
@@ -55,12 +55,12 @@ zeroTest <- function(logfile, pars, cols = 2, plot = TRUE, value = 0) {
     colnames(res) <- c(">= 0", "<0", ">=0 / <0")
     rownames(res) <- pars
     for (i in 1:length(pars)) {
-      res[i, 1] <- sum(output[ ,pars[i]] >= 0)
-      res[i ,2] <- sum(output[ ,pars[i]] < 0)
-      res[i ,3] <- sum(output[ ,pars[i]] >= 0) / sum(output[ ,pars[i]] < 0)
+      res[i, 1] <- sum(output[ ,pars[i]] >= value)
+      res[i ,2] <- sum(output[ ,pars[i]] < value)
+      res[i ,3] <- sum(output[ ,pars[i]] >= value) / sum(output[ ,pars[i]] < value)
     }
     
-  return(res)
+  return(suppressWarnings(res))
   }
 }
 
