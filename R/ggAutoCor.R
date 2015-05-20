@@ -18,7 +18,6 @@ ggAutoCor <- function(output, pars, conf, max.lag = NULL, min.lag = 0, first.lag
   }
   
   if (!first.lag) {
-    x <- x[2:length(x)]
     xacf <- xacf[2:length(xacf), ]
   }
  
