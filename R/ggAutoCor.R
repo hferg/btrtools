@@ -7,7 +7,7 @@
 #' @param max.lag Maximum lag
 #' @param min.lag Minimum lag
 
-ggAutoCor <- function(output, pars, conf, max.lag = NULL, min.lag = 0) {
+ggAutoCor <- function(output, pars, conf, max.lag = NULL, min.lag = 0, first.lag = FALSE) {
   dat <- output[ ,pars]
   confline <- qnorm((1 - conf)/2)/sqrt(length(dat))
   x <- acf(dat, plot = FALSE, lag.max = max.lag)
@@ -15,6 +15,11 @@ ggAutoCor <- function(output, pars, conf, max.lag = NULL, min.lag = 0) {
  
   if (min.lag > 0) {
     xacf <- xacf[-seq(1, min.lag), ]
+  }
+  
+  if (!first.lag) {
+    x <- x[2:length(x)]
+    xacf <- xacf[2:length(xacf), ]
   }
  
   sig <- (abs(xacf[ ,2]) > abs(confline)) ^2
