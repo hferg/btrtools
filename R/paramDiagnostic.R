@@ -31,7 +31,7 @@ paramDiagnostic <- function(logfile, pars, type = NULL, cols = 2) {
 
     for (i in 1:length(pars)) {
       if (type == "autocor") {
-        plots[[i]] <- ggAutoCor(output, pars[i], conf = 0.95)
+        plots[[i]] <- ggAutoCor(output, pars[i], conf = 0.95, min.lag = 1)
       } else if (type == "dens") {
         plots[[i]] <- ggDens(output, pars[i])
       } else if (type == "trace") {
