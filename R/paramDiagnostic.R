@@ -16,7 +16,7 @@ paramDiagnostic <- function(logfile, pars, type = NULL, cols = 2) {
   output <- btmcmc(logfile)
   
   if (length(pars) == 1) {
-    ac <- ggAutoCor(output, pars, conf = 0.95)
+    ac <- ggAutoCor(output, pars, conf = 0.95, min.lag = 1)
     dn <- ggDens(output, pars)
     tc <- ggTrace(output, pars)
     rm <- ggRunmean(output, pars)
