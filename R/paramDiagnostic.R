@@ -5,6 +5,7 @@
 #' @param pars A vector of the names of the parameters to generate diagnostic plots for.
 #' @param type The type of diagnostic plot, if plotting across many parameters. Either "autocor", "dens", "trace" or "runmean"
 #' @param cols The number of columns for multiple plotting.
+#' @param thinning Thinning parameter for the posterior - defaults to 1 (all samples). 2 uses every second sample, 3 every third and so on.
 #' @keywords mcmc diagnostic autocorrelation trace running mean density
 #' @export
 #' @examples
@@ -12,8 +13,8 @@
 #' params <- getParams("cool-data.log")
 #' paramDiagnostic("cool-data.log", params, type = "trace", cols = 3)
 
-paramDiagnostic <- function(logfile, pars, type = NULL, cols = 2) {
-  output <- btmcmc(logfile)
+paramDiagnostic <- function(logfile, pars, type = NULL, cols = 2, thinning = 1) {
+  output <- btmcmc(logfile, thinning = thinning)
   
   if (length(pars) == 1) {
     ac <- ggAutoCor(output, pars, conf = 0.95, min.lag = 1)

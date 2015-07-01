@@ -2,15 +2,16 @@
 #'
 #' A simple function that shows the logfile.
 #' @param logfile The name of the logfile.
-#' @param n 
+#' @param n The number of rows of the logfile to view (defaults to the whole file)
+#' @param thinning Thinning parameter for the posterior - defaults to 1 (all samples). 2 uses every second sample, 3 every third and so on.
 #' @export
 
-viewLogfile <- function(logfile, n = "max") {
+viewLogfile <- function(logfile, n = "max", thinning = 1) {
   
   if (n == "max") {
-    out <- btmcmc(logfile)
+    out <- btmcmc(logfile, thinning = thinning)
   } else {
-    out <- head(btmcmc(logfile), n)
+    out <- head(btmcmc(logfile, thinning = thinning), n)
   }
   
   return(out)

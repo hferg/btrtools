@@ -6,11 +6,12 @@
 #' This currently doesn't care whether the parameters are fixed to be the same, or whether they are
 #' both zero - just that they are both the same.
 #' @param logfile The name of the logfile resulting from an RJ BayesTraits model.
+#' @param thinning Thinning parameter for the posterior - defaults to 1 (all samples). 2 uses every second sample, 3 every third and so on.
 #' @export
 
-summariseModelString <- function(logfile) {
+summariseModelString <- function(logfile, thinning = 1) {
   # get model strings
-  output <- btmcmc(logfile)
+  output <- btmcmc(logfile, thinning = thinning)
   modstr <- output[ ,"Model.string"]
   
   # convert to a matrix.

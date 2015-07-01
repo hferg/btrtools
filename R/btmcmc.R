@@ -4,9 +4,10 @@
 #' is used inside plot functions and so on, but might be useful for
 #' other MCMC manipulations and so on.
 #' @param logfile The name of the logfile of the BayesTraits analysis.
+#' @param thinning Thinning parameter for the posterior - defaults to 1 (all samples). 2 uses every second sample, 3 every third and so on.
 #' @return A data frame containing the sample from the BayesTrait mcmc.
 
-btmcmc <- function(logfile) {
+btmcmc <- function(logfile, thinning = 1) {
 
   raw <- readLines(logfile)
   model <- gsub(" ", "", raw[2])
@@ -21,6 +22,7 @@ btmcmc <- function(logfile) {
     }
     
   }
+  output <- output[seq.int(1, nrow(output), thinning), ]
   return(output)
 }
 

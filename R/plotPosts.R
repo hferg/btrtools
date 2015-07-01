@@ -8,14 +8,15 @@
 #' subsetted from the output of getParams().
 #' @param fill The colour for the bars of the histogram. If "count" histogram will be shaded according to count.
 #' @param cols The number of columns to plot multiple plots into.
+#' @param thinning Thinning parameter for the posterior - defaults to 1 (all samples). 2 uses every second sample, 3 every third and so on.
 #' @keywords plot posterior histogram distribution
 #' @export
 #' @examples
 #' plotPosterior(cool-data.txt, c("Lh", "Alpha 1"))
 #' plotPosterior(cool-data.txt, params[c(1:2)])
 
-plotPosts <- function(logfile, pars, fill = "dodgerblue", cols = 2) {
-  output <- btmcmc(logfile) 
+plotPosts <- function(logfile, pars, fill = "dodgerblue", cols = 2, thinning = 1) {
+  output <- btmcmc(logfile, thinning = thinning)
   
   if (length(pars) == 1) {
     bwidth <- 3.5 * sd(output[ ,pars]) * length(output[ ,pars]) ^ -(1/3)
