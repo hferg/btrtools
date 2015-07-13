@@ -4,7 +4,8 @@
 \alias{paramDiagnostic}
 \title{paramDiagnostic}
 \usage{
-paramDiagnostic(logfile, pars, type = NULL, cols = 2, thinning = 1)
+paramDiagnostic(logfile, pars, type = NULL, cols = 2, thinning = 1,
+  burnin = 0)
 }
 \arguments{
 \item{logfile}{The name of the logfile of the BayesTraits run}
@@ -16,6 +17,8 @@ paramDiagnostic(logfile, pars, type = NULL, cols = 2, thinning = 1)
 \item{cols}{The number of columns for multiple plotting.}
 
 \item{thinning}{Thinning parameter for the posterior - defaults to 1 (all samples). 2 uses every second sample, 3 every third and so on.}
+
+\item{burnin}{The number of generations to remove from the start of the chain as burnin.}
 }
 \description{
 Plots 4 MCMC diagnostics for a parameter

@@ -4,12 +4,14 @@
 \alias{btmcmc}
 \title{btmcmc}
 \usage{
-btmcmc(logfile, thinning = 1)
+btmcmc(logfile, thinning = 1, burnin = 0)
 }
 \arguments{
 \item{logfile}{The name of the logfile of the BayesTraits analysis.}
 
 \item{thinning}{Thinning parameter for the posterior - defaults to 1 (all samples). 2 uses every second sample, 3 every third and so on.}
+
+\item{burnin}{The number of generations to remove from the start of the chain as burnin. Use if the chain has not reached convergence before sampling began.}
 }
 \value{
 A data frame containing the sample from the BayesTrait mcmc.

@@ -4,7 +4,7 @@
 \alias{getPostStats}
 \title{getPostStats}
 \usage{
-getPostStats(logfile, params, thinning = 1)
+getPostStats(logfile, params, thinning = 1, burnin = 0)
 }
 \arguments{
 \item{logfile}{The name of the logfile from a BayesTraits analysis.}
@@ -12,6 +12,8 @@ getPostStats(logfile, params, thinning = 1)
 \item{params}{A vector of one or more parameters of interests (e.g. a subset of getParams output)}
 
 \item{thinning}{Thinning parameter for the posterior - defaults to 1 (all samples). 2 uses every second sample, 3 every third and so on.}
+
+\item{burnin}{The number of generations to remove from the start of the chain as burnin.}
 }
 \value{
 A data frame of 3 columns, the parameter name, the mean of the parameter and its standard deviation.

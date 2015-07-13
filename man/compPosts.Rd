@@ -4,7 +4,7 @@
 \alias{compPosts}
 \title{compPosts}
 \usage{
-compPosts(logs, pars, thinning = 1)
+compPosts(logs, pars, thinning = 1, burnin = 0)
 }
 \arguments{
 \item{logs}{The name of the trait data file on which BayesTraits was run, or a vector of >1 names if comparing between >1 logs.}
@@ -13,6 +13,8 @@ compPosts(logs, pars, thinning = 1)
 be subsetted from the output of getParams().}
 
 \item{thinning}{Thinning parameter for the posterior - defaults to 1 (all samples). 2 uses every second sample, 3 every third and so on.}
+
+\item{burnin}{The number of generations to remove from the start of the chain as burnin.}
 }
 \description{
 Compares histograms of one or more parameters from the same output file, or one parameter from one or more output files.

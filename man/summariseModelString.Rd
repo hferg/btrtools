@@ -4,12 +4,14 @@
 \alias{summariseModelString}
 \title{summariseModelString}
 \usage{
-summariseModelString(logfile, thinning = 1)
+summariseModelString(logfile, thinning = 1, burnin = 0)
 }
 \arguments{
 \item{logfile}{The name of the logfile resulting from an RJ BayesTraits model.}
 
 \item{thinning}{Thinning parameter for the posterior - defaults to 1 (all samples). 2 uses every second sample, 3 every third and so on.}
+
+\item{burnin}{The number of generations to remove from the start of the chain as burnin.}
 }
 \description{
 Standardises the model string output from an RJ analysis, and returns a list of two dataframes.

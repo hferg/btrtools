@@ -4,7 +4,7 @@
 \alias{paramLh}
 \title{paramLh}
 \usage{
-paramLh(logfile, pars, cols = 2, thinning = 1)
+paramLh(logfile, pars, cols = 2, thinning = 1, burnin = 0)
 }
 \arguments{
 \item{logfile}{The name of the logfile of the BayesTraits run}
@@ -14,6 +14,8 @@ paramLh(logfile, pars, cols = 2, thinning = 1)
 \item{cols}{The number of columns of the resultant plot (if more than one plot)}
 
 \item{thinning}{Thinning parameter for the posterior - defaults to 1 (all samples). 2 uses every second sample, 3 every third and so on.}
+
+\item{burnin}{The number of generations to remove from the start of the chain as burnin.}
 }
 \description{
 Plots a parameter against the likelihood for each iteration.

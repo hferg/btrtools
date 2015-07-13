@@ -4,7 +4,7 @@
 \alias{viewLogfile}
 \title{viewLogfile}
 \usage{
-viewLogfile(logfile, n = "max", thinning = 1)
+viewLogfile(logfile, n = "max", thinning = 1, burnin = 0)
 }
 \arguments{
 \item{logfile}{The name of the logfile.}

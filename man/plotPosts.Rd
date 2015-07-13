@@ -4,7 +4,8 @@
 \alias{plotPosts}
 \title{plotPosts}
 \usage{
-plotPosts(logfile, pars, fill = "dodgerblue", cols = 2, thinning = 1)
+plotPosts(logfile, pars, fill = "dodgerblue", cols = 2, thinning = 1,
+  burnin = 0)
 }
 \arguments{
 \item{logfile}{The name of the trait data file on which BayesTraits was run.}
@@ -14,6 +15,8 @@ plotPosts(logfile, pars, fill = "dodgerblue", cols = 2, thinning = 1)
 \item{cols}{The number of columns to plot multiple plots into.}
 
 \item{thinning}{Thinning parameter for the posterior - defaults to 1 (all samples). 2 uses every second sample, 3 every third and so on.}
+
+\item{burnin}{The number of generations to remove from the start of the chain as burnin.}
 
 \item{params}{A vector containing the name of the parameter(s) that are to be plotted. Can be
 subsetted from the output of getParams().}

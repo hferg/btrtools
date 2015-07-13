@@ -4,7 +4,8 @@
 \alias{zeroTest}
 \title{zeroTest}
 \usage{
-zeroTest(logfile, pars, cols = 2, plot = TRUE, value = 0, thinning = 1)
+zeroTest(logfile, pars, cols = 2, plot = TRUE, value = 0, thinning = 1,
+  burnin = 0)
 }
 \arguments{
 \item{logfile}{The name of the BayesTraits output logfile.}
@@ -18,6 +19,8 @@ zeroTest(logfile, pars, cols = 2, plot = TRUE, value = 0, thinning = 1)
 \item{value}{The value against which to test (defaults to zero)}
 
 \item{thinning}{Thinning parameter for the posterior - defaults to 1 (all samples). 2 uses every second sample, 3 every third and so on.}
+
+\item{burnin}{The number of generations to remove from the start of the chain as burnin.}
 }
 \description{
 Takes a parameter and plots the posterior as a histogram with values >0 one
