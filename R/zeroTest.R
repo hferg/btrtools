@@ -10,6 +10,7 @@
 #' @param value The value against which to test (defaults to zero)
 #' @param plot If true, a histogram coloured according to value is plotted. If false, a table summarising the posterior with respect to value is printed to screen.
 #' @param thinning Thinning parameter for the posterior - defaults to 1 (all samples). 2 uses every second sample, 3 every third and so on.
+#' @param burnin The number of generations to remove from the start of the chain as burnin.
 #' @export
 #' @keywords significance test testing posterior
 #' @examples
@@ -18,8 +19,8 @@
 #' zeroTest("cool-data.log", "Lambda", value = 0.5)
 #' zeroTest("cool-data.log", "Lambda", value = 0.5, plot = FALSE)
 
-zeroTest <- function(logfile, pars, cols = 2, plot = TRUE, value = 0, thinning = 1) {
-  output <- btmcmc(logfile, thinning = thinning)
+zeroTest <- function(logfile, pars, cols = 2, plot = TRUE, value = 0, thinning = 1, burnin = 0) {
+  output <- btmcmc(logfile, thinning = thinning, burnin = burnin)
   
   if (plot == TRUE) {
     plot.cols <- c("orangered", "dodgerblue")

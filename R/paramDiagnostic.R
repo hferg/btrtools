@@ -6,6 +6,7 @@
 #' @param type The type of diagnostic plot, if plotting across many parameters. Either "autocor", "dens", "trace" or "runmean"
 #' @param cols The number of columns for multiple plotting.
 #' @param thinning Thinning parameter for the posterior - defaults to 1 (all samples). 2 uses every second sample, 3 every third and so on.
+#' @param burnin The number of generations to remove from the start of the chain as burnin.
 #' @keywords mcmc diagnostic autocorrelation trace running mean density
 #' @export
 #' @examples
@@ -13,8 +14,8 @@
 #' params <- getParams("cool-data.log")
 #' paramDiagnostic("cool-data.log", params, type = "trace", cols = 3)
 
-paramDiagnostic <- function(logfile, pars, type = NULL, cols = 2, thinning = 1) {
-  output <- btmcmc(logfile, thinning = thinning)
+paramDiagnostic <- function(logfile, pars, type = NULL, cols = 2, thinning = 1, burnin = 0) {
+  output <- btmcmc(logfile, thinning = thinning, burnin = burnin)
   
   if (length(pars) == 1) {
     ac <- ggAutoCor(output, pars, conf = 0.95, min.lag = 1)

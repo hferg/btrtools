@@ -5,9 +5,10 @@
 #' other MCMC manipulations and so on.
 #' @param logfile The name of the logfile of the BayesTraits analysis.
 #' @param thinning Thinning parameter for the posterior - defaults to 1 (all samples). 2 uses every second sample, 3 every third and so on.
+#' @param burnin The number of generations to remove from the start of the chain as burnin. Use if the chain has not reached convergence before sampling began.
 #' @return A data frame containing the sample from the BayesTrait mcmc.
 
-btmcmc <- function(logfile, thinning = 1) {
+btmcmc <- function(logfile, thinning = 1, burnin = 0) {
 
   raw <- readLines(logfile)
   model <- gsub(" ", "", raw[2])
@@ -22,7 +23,7 @@ btmcmc <- function(logfile, thinning = 1) {
     }
     
   }
-  output <- output[seq.int(1, nrow(output), thinning), ]
+  output <- output[seq.int(burnin, nrow(output), thinning), ]
   return(output)
 }
 

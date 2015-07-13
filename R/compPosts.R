@@ -6,18 +6,19 @@
 #' @param pars A vector containing the names of two parameters to be compared. Must be a single parameter if comparing between two logs. Can 
 #' be subsetted from the output of getParams().
 #' @param thinning Thinning parameter for the posterior - defaults to 1 (all samples). 2 uses every second sample, 3 every third and so on.
+#' @param burnin The number of generations to remove from the start of the chain as burnin.
 #' @keywords plot posterior histogram distribution compare
 #' @export
 #' @examples
 #' plotPosterior(cool-data.txt, c("Lh", "Alpha 1"))
 #' plotPosterior(cool-data.txt, params[c(1:2)])
 
-compPosts <- function(logs, pars, thinning = 1) {
+compPosts <- function(logs, pars, thinning = 1, burnin = 0) {
   
   if (length(logs) == 1) {
-    output <- btmcmc(logs, thinning = thinning)
+    output <- btmcmc(logs, thinning = thinning, burnin = burnin)
   } else {
-    output <- lapply(logs, btmcmc, thinning = thinning)
+    output <- lapply(logs, btmcmc, thinning = thinning, burnin = burnin)
   }
   
   if (length(logs) == 1) {
