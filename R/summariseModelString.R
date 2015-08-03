@@ -8,6 +8,7 @@
 #' @param logfile The name of the logfile resulting from an RJ BayesTraits model.
 #' @param thinning Thinning parameter for the posterior - defaults to 1 (all samples). 2 uses every second sample, 3 every third and so on.
 #' @param burnin The number of generations to remove from the start of the chain as burnin.
+#' @name summariseModelString
 #' @export
 
 summariseModelString <- function(logfile, thinning = 1, burnin = 0) {
@@ -153,4 +154,3 @@ summariseModelString <- function(logfile, thinning = 1, burnin = 0) {
   
   return(ret)
 }
-

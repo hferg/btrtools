@@ -18,7 +18,7 @@ btmcmc <- function(logfile, thinning = 1, burnin = 0) {
   output <- data.frame(output, stringsAsFactors = FALSE)
  
   for (i in 1:ncol(output)) {
-    if (colnames(output)[i] != "Model.string") {
+    if (colnames(output)[i] != "Model.string" && colnames(output)[i] != "Dep...InDep") {
       output[ ,i] <- as.numeric(output[ ,i])
     }
     
