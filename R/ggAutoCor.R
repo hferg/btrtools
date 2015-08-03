@@ -7,7 +7,7 @@
 #' @param max.lag Maximum lag
 #' @param min.lag Minimum lag
 
-ggAutoCor <- function(output, pars, conf, max.lag = NULL, min.lag = 0) {
+ggAutoCor <- function(output, pars, conf, max.lag = NULL, min.lag = 0, title = "") {
   dat <- output[ ,pars]
   confline <- qnorm((1 - conf)/2)/sqrt(length(dat))
   x <- acf(dat, plot = FALSE, lag.max = max.lag)
@@ -23,7 +23,7 @@ ggAutoCor <- function(output, pars, conf, max.lag = NULL, min.lag = 0) {
     geom_hline(yintercept = -confline, color = "blue", size = 0.2) +
     geom_hline(yintercept = confline, color = "blue", size = 0.2) +
     geom_hline(yintercept = 0, color = "red", size = 0.2) +
-    ggtitle(paste(pars))
+    ggtitle(paste(pars, title))
   
   return(z)
 }
