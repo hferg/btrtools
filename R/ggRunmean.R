@@ -18,7 +18,7 @@ ggRunmean <- function(output, pars, window.size = 10, title = "") {
   }
 
   z <- ggplot(data.frame(Window = c(1:length(windows)), mean = means), aes(x = Window, y = mean)) +
-    geom_line(color = "dodgerblue") +
+    geom_point(color = "dodgerblue") +
     ggtitle(paste(pars, title)) +
     geom_smooth(method = "lm", formula = y ~ x)
   return(z)
