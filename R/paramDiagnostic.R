@@ -21,7 +21,7 @@ paramDiagnostic <- function(logfile, pars, type = NULL, cols = 2, thinning = 1, 
     ac <- ggAutoCor(output, pars, conf = 0.95, min.lag = 1, title = logfile)
     hs <- ggHist(output, pars, title = logfile)
     tc <- ggTrace(output, pars, title = logfile)
-    rm <- ggRunmean(output, pars, title = logfile)
+    rm <- ggRunmean(output, pars, title = logfile, window.size = 10)
     plots <- list(ac, hs, tc, rm)
   } else {
     
@@ -39,7 +39,7 @@ paramDiagnostic <- function(logfile, pars, type = NULL, cols = 2, thinning = 1, 
       } else if (type == "trace") {
         plots[[i]] <- ggTrace(output, pars[i], title = logfile)
       } else if (type == "runmean") {
-        plots[[i]] <- ggRunmean(output, pars[i], title = logfile)
+        plots[[i]] <- ggRunmean(output, pars[i], title = logfile, window.size = 10)
       } else if (type == "hist") {
         plots[[i]] <- ggHist(output, pars[[i]], title = logfile)
       }
