@@ -4,7 +4,7 @@
 \alias{ggTrace}
 \title{ggTrace}
 \usage{
-ggTrace(output, pars)
+ggTrace(output, pars, title = "")
 }
 \arguments{
 \item{output}{BayesTraits MCMC output - output from btmcmc function.}

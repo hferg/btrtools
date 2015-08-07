@@ -4,7 +4,7 @@
 \alias{ggRunmean}
 \title{ggRunmean}
 \usage{
-ggRunmean(output, pars)
+ggRunmean(output, pars, window.size = 10, title = "")
 }
 \arguments{
 \item{dat}{The vector of the paramater you want to see an autocorrelation plot for.}

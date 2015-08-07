@@ -4,7 +4,7 @@
 \alias{ggAutoCor}
 \title{ggAutoCor}
 \usage{
-ggAutoCor(output, pars, conf, max.lag = NULL, min.lag = 0)
+ggAutoCor(output, pars, conf, max.lag = NULL, min.lag = 0, title = "")
 }
 \arguments{
 \item{conf}{The confidence level you want to see the limits for.}

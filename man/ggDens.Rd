@@ -4,7 +4,7 @@
 \alias{ggDens}
 \title{ggDens}
 \usage{
-ggDens(output, pars)
+ggDens(output, pars, title = "")
 }
 \arguments{
 \item{dat}{The vector of paramater you want to see an autocorrelation plot for.}
