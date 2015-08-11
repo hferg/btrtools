@@ -23,7 +23,11 @@ summariseModelString <- function(logfile, thinning = 1, burnin = 0) {
   
   pars <- colnames(output)[c((which(colnames(output) =="Model.string") + 1) 
     : (which(colnames(output) =="Model.string") + ncol(modstr)))]
-    
+  
+  if (any(pars == "Dep...InDep")) {
+    pars[pars == "Dep...InDep"] <- "I.ID"
+  }
+
   zerotable <- matrix(nrow = ncol(modstr), ncol = 2)
   rownames(zerotable) <- pars
   colnames(zerotable) <- c("frequency", "prob")
