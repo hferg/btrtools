@@ -13,7 +13,7 @@
 #' plotPosterior(cool-data.txt, c("Lh", "Alpha 1"))
 #' plotPosterior(cool-data.txt, params[c(1:2)])
 
-compPosts <- function(logs, pars, thinning = 1, burnin = 0, alpha = 0.5) {
+compPosts <- function(logs, pars, thinning = 1, burnin = 0, alpha = 0.5, fontsize = 3) {
   
   if (length(logs) == 1) {
     output <- btmcmc(logs, thinning = thinning, burnin = burnin)
@@ -41,7 +41,8 @@ compPosts <- function(logs, pars, thinning = 1, burnin = 0, alpha = 0.5) {
   
   bwidth <- 3.5 * sd(p$d) * length(p$d) ^ -(1/3)
   ret <- ggplot(p, aes(x = d, fill = id)) +
-    geom_histogram(binwidth = bwidth, alpha = alpha, position = "identity")
+    geom_histogram(binwidth = bwidth, alpha = alpha, position = "identity") +
+    theme(legend.text = element_text(size = fontsize))
   
   return(ret)
 }
