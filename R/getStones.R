@@ -5,7 +5,7 @@
 #' @name getStones
 #' @export
 
-getStones <- function(logs, order = TRUE) {
+getStones <- function(logs, order = TRUE, paramcount = FALSE) {
   res <- matrix(ncol = 2, nrow = length(logs))
   colnames(res) <- c("logfile", "marginalLh")
   for (i in 1:length(logs)) {
