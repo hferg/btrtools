@@ -4,7 +4,8 @@
 \alias{compPosts}
 \title{compPosts}
 \usage{
-compPosts(logs, pars, thinning = 1, burnin = 0, alpha = 0.5)
+compPosts(logs, pars, thinning = 1, burnin = 0, alpha = 0.5,
+  fontsize = 3)
 }
 \arguments{
 \item{logs}{The name of the trait data file on which BayesTraits was run, or a vector of >1 names if comparing between >1 logs.}
