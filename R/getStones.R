@@ -6,5 +6,14 @@
 #' @export
 
 getStones <- function(logs) {
-  
+  res <- matrix(ncol = 2, nrow = length(logs))
+  colnames(res) <- c("logfile", "marginalLh")
+  for (i in 1:length(logs)) {
+    raw <- readLines(logs[[i]])
+    res[i, 1] <- logs[[i]]
+    res[i, 2] <- as.numeric(strsplit(raw[length(raw)], "\t")[[1]][2])
+  }
+  res <- data.frame(res)
+  res$marginalLh <- as.numeric(as.character(res$marginalLh))
+  return(res)
 }
