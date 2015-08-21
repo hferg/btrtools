@@ -4,7 +4,7 @@
 \alias{getStones}
 \title{getStones}
 \usage{
-getStones(logs)
+getStones(logs, order = TRUE)
 }
 \arguments{
 \item{logs}{A vector of one or more log files from stepping stones analysis.}

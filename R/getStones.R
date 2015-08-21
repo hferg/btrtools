@@ -5,7 +5,7 @@
 #' @name getStones
 #' @export
 
-getStones <- function(logs) {
+getStones <- function(logs, order = TRUE) {
   res <- matrix(ncol = 2, nrow = length(logs))
   colnames(res) <- c("logfile", "marginalLh")
   for (i in 1:length(logs)) {
@@ -15,5 +15,10 @@ getStones <- function(logs) {
   }
   res <- data.frame(res)
   res$marginalLh <- as.numeric(as.character(res$marginalLh))
+
+  if (order) {
+    res <- res[order(res$marginalLh, decreasing = TRUE), ]
+  }
+
   return(res)
 }
