@@ -21,8 +21,13 @@ summariseModelString <- function(logfile, thinning = 1, burnin = 0) {
   modstr <- strsplit(modstr, " ")
   modstr <- matrix(unlist(modstr), ncol = length(modstr[[1]]), byrow = TRUE)
   
-  pars <- colnames(output)[c((which(colnames(output) =="Model.string") + 1) 
+  if (any(colnames(output) == "Dep...InDep")) {
+    pars <- colnames(output)[c((which(colnames(output) =="Model.string") + 2) 
     : (which(colnames(output) =="Model.string") + ncol(modstr)))]
+  } else {
+    pars <- colnames(output)[c((which(colnames(output) =="Model.string") + 1) 
+    : (which(colnames(output) =="Model.string") + ncol(modstr)))]    
+  }
   
   if (any(pars == "Dep...InDep")) {
     pars[pars == "Dep...InDep"] <- "I.ID"
