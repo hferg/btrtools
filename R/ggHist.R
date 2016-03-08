@@ -4,7 +4,7 @@
 #' but has sensible break behaviour in R. Produces a single
 #' histogram but is mostly called internally for things like
 #' plotPosts.
-#' @name niceHist
+#' @name ggHist
 #' @param parameter The a vecotr of values that you want a histogram of.
 #' @param fill The colour to fill the bars with
 #' @param breaks The algorithgm to calculate breaks. Defaults to "scott", can also be "fandd"
