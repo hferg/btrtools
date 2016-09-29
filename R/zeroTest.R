@@ -54,7 +54,7 @@ zeroTest <- function(logfile, pars, cols = 2, plot = TRUE, value = 0, thinning =
     }
   } else {
     res <- matrix(ncol = 3, nrow = length(pars))
-    colnames(res) <- c(">= 0", "<0", ">=0 / <0")
+    colnames(res) <- c(paste(">= ", value), paste("< ", value), paste(">= ", value, "/ < ", value))
     rownames(res) <- pars
     for (i in 1:length(pars)) {
       res[i, 1] <- sum(output[ ,pars[i]] >= value)
