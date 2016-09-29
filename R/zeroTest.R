@@ -23,28 +23,38 @@ zeroTest <- function(logfile, pars, cols = 2, plot = TRUE, value = 0, thinning =
   output <- btmcmc(logfile, thinning = thinning, burnin = burnin)
   
   if (plot == TRUE) {
-    plot.cols <- c("orangered", "dodgerblue")
-    names(plot.cols) <- c("< 0", ">= 0")
     
     if (length(pars) == 1) {
+      plot.cols <- c("orangered", "dodgerblue")
+      names(plot.cols) <- c(paste("< ", value), paste(">= ", value))
       bwidth <- 3.5 * sd(output[ ,pars]) * length(output[ ,pars]) ^ -(1/3)
-      p <- data.frame(p = output[ ,pars], z = NA)
+      p <- data.frame(p = output[ ,pars], z = output[ ,pars] >= value)
       colnames(p) <- c(pars, "z")
-      p$z[which(p[ ,pars] < value)] <- "< 0"
-      p$z[which(p[ ,pars] >= value)] <- ">= 0"
+      p$z[which(p[ ,pars] < value)] <- paste("< ", value)
+      p$z[which(p[ ,pars] >= value)] <- paste(">= ", value)
       ret <- ggplot(p, aes_string(x = pars, fill = "z")) +
         geom_histogram(colour = "darkgray", binwidth = bwidth) +
         scale_fill_manual(name = "", values = plot.cols)
       return(ret)
     } else {
       plots <- list()
+
+      if (length(value) == 1) {
+        value <- rep(value, length(pars))
+      }
+
+      if (length(value) != length(pars)) {
+        stop("The length of the values vector must equal the number of parameters.")
+      }
       
       for (i in 1:length(pars)) {
+        plot.cols <- c("orangered", "dodgerblue")
+        names(plot.cols) <- c(paste("< ", value[i]), paste(">= ", value[i]))
         bwidth <- 3.5 * sd(output[ ,pars[i]]) * length(output[ ,pars[i]]) ^ -(1/3)
         p <- data.frame(p = output[ ,pars[i]], z = NA)
         colnames(p) <- c(pars[i], "z")
-        p$z[which(p[ ,pars[i]] < value)] <- "< 0"
-        p$z[which(p[ ,pars[i]] >= value)] <- ">= 0"
+        p$z[which(p[ ,pars[i]] < value[i])] <- paste("< ", value[i])
+        p$z[which(p[ ,pars[i]] >= value[i])] <- paste(">= ", value[i])
         plots[[i]] <- ggplot(p, aes_string(x = pars[i], fill = "z")) +
           geom_histogram(colour = "darkgrey", binwidth = bwidth) +
           scale_fill_manual(name = "", values = plot.cols)
