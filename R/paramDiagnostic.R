@@ -24,10 +24,10 @@ paramDiagnostic <- function(logfile, pars, type = NULL, cols = 2, thinning = 1, 
   }
 
   if (length(pars) == 1) {
-    ac <- ggAutoCor(output, pars, conf = 0.95, min.lag = 1, title = logfile)
-    hs <- ggHist(output, pars, title = logfile)
-    tc <- ggTrace(output, pars, title = logfile)
-    rm <- ggRunmean(output, pars, title = logfile, window.size = 10)
+    ac <- ggAutoCor(output, pars, conf = 0.95, min.lag = 1, title = title)
+    hs <- ggHist(output, pars, title = title)
+    tc <- ggTrace(output, pars, title = title)
+    rm <- ggRunmean(output, pars, title = title, window.size = 10)
     plots <- list(ac, hs, tc, rm)
   } else {
     
