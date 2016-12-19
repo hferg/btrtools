@@ -14,7 +14,8 @@
 #' params <- getParams("cool-data.log")
 #' paramDiagnostic("cool-data.log", params, type = "trace", cols = 3)
 
-paramDiagnostic <- function(logfile, pars, type = NULL, cols = 2, thinning = 1, burnin = 0) {
+paramDiagnostic <- function(logfile, pars, type = NULL, cols = 2, thinning = 1, burnin = 0,
+  title = NULL) {
   
   if (is.data.frame(logfile)) {
     output <- logfile
@@ -40,13 +41,13 @@ paramDiagnostic <- function(logfile, pars, type = NULL, cols = 2, thinning = 1, 
       if (type == "autocor") {
         plots[[i]] <- ggAutoCor(output, pars[i], conf = 0.95, min.lag = 1)
       } else if (type == "dens") {
-        plots[[i]] <- ggDens(output, pars[i], title = pars)
+        plots[[i]] <- ggDens(output, pars[i], title = title)
       } else if (type == "trace") {
-        plots[[i]] <- ggTrace(output, pars[i], title = pars)
+        plots[[i]] <- ggTrace(output, pars[i], title = title)
       } else if (type == "runmean") {
-        plots[[i]] <- ggRunmean(output, pars[i], title = pars, window.size = 10)
+        plots[[i]] <- ggRunmean(output, pars[i], title = title, window.size = 10)
       } else if (type == "hist") {
-        plots[[i]] <- ggHist(output, pars[[i]], title = pars)
+        plots[[i]] <- ggHist(output, pars[[i]], title = title)
       }
       
     }
