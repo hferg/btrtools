@@ -21,7 +21,7 @@ paramDiagnostic <- function(logfile, pars, type = NULL, cols = 2, thinning = 1, 
   } else { 
     output <- btmcmc(logfile, thinning = thinning, burnin = burnin)
   }
-  
+
   if (length(pars) == 1) {
     ac <- ggAutoCor(output, pars, conf = 0.95, min.lag = 1, title = logfile)
     hs <- ggHist(output, pars, title = logfile)
@@ -40,13 +40,13 @@ paramDiagnostic <- function(logfile, pars, type = NULL, cols = 2, thinning = 1, 
       if (type == "autocor") {
         plots[[i]] <- ggAutoCor(output, pars[i], conf = 0.95, min.lag = 1)
       } else if (type == "dens") {
-        plots[[i]] <- ggDens(output, pars[i], title = logfile)
+        plots[[i]] <- ggDens(output, pars[i], title = pars)
       } else if (type == "trace") {
-        plots[[i]] <- ggTrace(output, pars[i], title = logfile)
+        plots[[i]] <- ggTrace(output, pars[i], title = pars)
       } else if (type == "runmean") {
-        plots[[i]] <- ggRunmean(output, pars[i], title = logfile, window.size = 10)
+        plots[[i]] <- ggRunmean(output, pars[i], title = pars, window.size = 10)
       } else if (type == "hist") {
-        plots[[i]] <- ggHist(output, pars[[i]], title = logfile)
+        plots[[i]] <- ggHist(output, pars[[i]], title = pars)
       }
       
     }
