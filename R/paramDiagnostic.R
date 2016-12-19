@@ -15,7 +15,12 @@
 #' paramDiagnostic("cool-data.log", params, type = "trace", cols = 3)
 
 paramDiagnostic <- function(logfile, pars, type = NULL, cols = 2, thinning = 1, burnin = 0) {
-  output <- btmcmc(logfile, thinning = thinning, burnin = burnin)
+  
+  if (is.data.frame(logfile)) {
+    output <- logfile
+  } else { 
+    output <- btmcmc(logfile, thinning = thinning, burnin = burnin)
+  }
   
   if (length(pars) == 1) {
     ac <- ggAutoCor(output, pars, conf = 0.95, min.lag = 1, title = logfile)

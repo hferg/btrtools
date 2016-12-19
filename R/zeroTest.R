@@ -19,9 +19,14 @@
 #' zeroTest("cool-data.log", "Lambda", value = 0.5)
 #' zeroTest("cool-data.log", "Lambda", value = 0.5, plot = FALSE)
 
-zeroTest <- function(logfile, pars, cols = 2, plot = TRUE, value = 0, thinning = 1, burnin = 0) {
-  output <- btmcmc(logfile, thinning = thinning, burnin = burnin)
-  
+zeroTest <- function(logfile, pars, cols = 2, plot = TRUE, value = 0, thinning = 1, 
+  burnin = 0) {
+  if (is.data.frame(logfile)) {
+    output <- logfile
+  } else { 
+    output <- btmcmc(logfile, thinning = thinning, burnin = burnin)
+  }
+
   if (plot == TRUE) {
     
     if (length(pars) == 1) {
