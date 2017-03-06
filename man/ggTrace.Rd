@@ -14,4 +14,3 @@ ggTrace(output, pars, title = "")
 \description{
 Make a trace plot for an MCMC parameter using ggplot2.
 }
-

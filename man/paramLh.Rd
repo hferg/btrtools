@@ -28,4 +28,3 @@ paramLh("cool-data.log", params[c(2:4)])
 }
 \keyword{log-likelihood}
 \keyword{parameters}
-

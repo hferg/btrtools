@@ -16,4 +16,3 @@ viewLogfile(logfile, n = "max", thinning = 1, burnin = 0)
 \description{
 A simple function that shows the logfile.
 }
-

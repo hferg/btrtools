@@ -29,4 +29,3 @@ compareStones("complex.model.stones.log.txt", "simple.model.stones.log.txt")
 \keyword{stepping}
 \keyword{stone}
 \keyword{testing}
-

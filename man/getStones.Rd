@@ -12,4 +12,3 @@ getStones(logs, order = TRUE, paramcount = FALSE)
 \description{
 Get the marginal likelihoods from a single, or vector of, stepping stones log files.
 }
-

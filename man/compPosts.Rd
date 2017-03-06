@@ -29,4 +29,3 @@ plotPosterior(cool-data.txt, params[c(1:2)])
 \keyword{histogram}
 \keyword{plot}
 \keyword{posterior}
-

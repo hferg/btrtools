@@ -20,4 +20,3 @@ the other details the proportion of times each pair of parameters are locked to 
 This currently doesn't care whether the parameters are fixed to be the same, or whether they are
 both zero - just that they are both the same.
 }
-

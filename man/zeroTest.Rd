@@ -38,4 +38,3 @@ zeroTest("cool-data.log", "Lambda", value = 0.5, plot = FALSE)
 \keyword{significance}
 \keyword{test}
 \keyword{testing}
-

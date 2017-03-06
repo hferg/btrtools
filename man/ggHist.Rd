@@ -24,4 +24,3 @@ but has sensible break behaviour in R. Produces a single
 histogram but is mostly called internally for things like
 plotPosts.
 }
-

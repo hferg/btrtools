@@ -19,4 +19,3 @@ ggAutoCor(output, pars, conf, max.lag = NULL, min.lag = 0, title = "")
 Makes an autocorrealtion plot using ggplot2 - which looks nicer than the
 core R plot functions.
 }
-

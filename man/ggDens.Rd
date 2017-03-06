@@ -12,4 +12,3 @@ ggDens(output, pars, title = "")
 \description{
 Make a density plot for an MCMC parameter using ggplot2.
 }
-

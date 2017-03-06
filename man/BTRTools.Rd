@@ -11,4 +11,3 @@ A package that makes it easier to process and analyse the output of BayesTraits.
 \author{
 Henry Ferguson-Gow
 }
-

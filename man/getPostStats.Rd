@@ -31,4 +31,3 @@ getPostMean("cool-data.log.txt", "Lh")
 \keyword{mean}
 \keyword{posterior}
 \keyword{standard}
-

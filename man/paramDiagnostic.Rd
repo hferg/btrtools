@@ -5,7 +5,7 @@
 \title{paramDiagnostic}
 \usage{
 paramDiagnostic(logfile, pars, type = NULL, cols = 2, thinning = 1,
-  burnin = 0)
+  burnin = 0, title = NULL)
 }
 \arguments{
 \item{logfile}{The name of the logfile of the BayesTraits run}
@@ -35,4 +35,3 @@ paramDiagnostic("cool-data.log", params, type = "trace", cols = 3)
 \keyword{mean}
 \keyword{running}
 \keyword{trace}
-

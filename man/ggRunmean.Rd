@@ -12,4 +12,3 @@ ggRunmean(output, pars, window.size = 10, title = "")
 \description{
 Make a running mean plot for an MCMC parameter using ggplot2.
 }
-

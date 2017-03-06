@@ -20,4 +20,3 @@ analysis logfile for input into plotting and other analysis functions.
 getParams("cool-data.txt")
 }
 \keyword{parameters}
-

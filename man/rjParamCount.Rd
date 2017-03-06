@@ -20,4 +20,3 @@ rjParamCount(logs, burnin = 0, thinning = 1, mode)
 \description{
 Counts the mean number of parameters in a vecotr of one or more RJ models. Simpler than the full localscalarPP since just the parameter number is considered.
 }
-
