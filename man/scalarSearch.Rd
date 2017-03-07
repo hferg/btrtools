@@ -6,7 +6,7 @@
 Searches through the posterior of an RJ continuous model for scalars and 
 returns them.}
 \usage{
-scalarSearch(rj_output, counts)
+scalarSearch(rj_output, counts, fullmrcas)
 }
 \arguments{
 \item{rj_output}{partially processed RJ output.}
