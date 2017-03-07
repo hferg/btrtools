@@ -155,7 +155,7 @@ multiplyNodes <- function(scales, name, tree, Node_effects) {
 #' @param rj_output partially processed RJ output.
 #' @param counts The counts table.
 #' @name scalarSearch
-scalarSearch <- function(rj_output, counts) {
+scalarSearch <- function(rj_output, counts, fullmrcas) {
   alltypes <- vector(mode = "list", length = nrow(rj_output))
   allmrcas <- vector(mode = "list", length = nrow(rj_output))
 
@@ -226,8 +226,8 @@ scalarSearch <- function(rj_output, counts) {
 #' Calculate the mode.
 #' @name modeStat
 
-modeStat <- function(x, log = FALSE) {
-  
+modeStat <- function(x, log = FALSE) 
+{  
   if (length(x) < 2) {
     return("NA")
   }
@@ -301,7 +301,7 @@ rjpp <- function(rjlog, rjtrees, tree, burnin = 0, thinning = 1,
   counts <- createCountsTable(extree, meanbl)
 
   # Find the scalars.
-  all_scalars <- scalarSearch(rj_output, counts)
+  all_scalars <- scalarSearch(rj_output, counts, fullmrcas)
 
   # Calculate cumulative node effects
   for (i in 1:length(all_scalars$Node)) {
