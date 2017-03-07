@@ -11,3 +11,4 @@ modeStat(x, log = FALSE)
 modeStat
 Calculate the mode.
 }
+\keyword{internal}

@@ -11,3 +11,4 @@ getPL(tree, startnode = NA, node)
 getPL
 Gets the path length from the root to the position of a particular node.
 }
+\keyword{internal}

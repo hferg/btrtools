@@ -6,6 +6,7 @@
 #' @param tree The time tree
 #' @param Node_effects A list, one element per node, to fill with the cumulative scalars
 #' @name multiplyNodes
+#' @keywords internal
 multiplyNodes <- function(scales, name, tree, Node_effects) {
   # get descendents
   descs <- c(getDescs(tree, name), as.numeric(name))

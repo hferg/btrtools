@@ -4,6 +4,7 @@
 #' @param extree The time tree
 #' @param meanbl The output of meanBranches
 #' @name createCounts
+#' @keywords internal
 createCountsTable <- function(extree, meanbl) {
   counts <- matrix(ncol = 53, nrow = (nrow(extree$edge) + 1))
   colnames(counts) <- c("branch", "ancNode", "descNode", "nTips", "start", "end", "mid", "orgBL", 

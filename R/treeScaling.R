@@ -5,6 +5,7 @@
 #' @param tree A tree of class phylo.
 #' @param node A node number describing the clade to be transformed.
 #' @param scalar The multiplier that rate is increased by in the clade specified by node.
+#' @keywords internal
 
 localRate <- function(tree, node, scalar) {
     descs <- getDescs(tree, node)
@@ -21,6 +22,7 @@ localRate <- function(tree, node, scalar) {
 #' @param tree A tree of class phylo.
 #' @param node A node number describing the clade(s) to be transformed.
 #' @param lambda The value or values of lambda by which to transform the specified clade(s).
+#' @keywords internal
 
 localLambda <- function(tree, node, lambda) {
     descs <- getDescs(tree, node)
@@ -39,6 +41,7 @@ localLambda <- function(tree, node, lambda) {
 #' @param tree A tree of class phylo.
 #' @param node A node number describing the clade to be transformed.
 #' @param kappa The multiplier that rate is increased by in the clade specified by node.
+#' @keywords internal
 
 # TODO(hfg): Add rescale option.
 
@@ -67,6 +70,7 @@ localKappa <- function(tree, node, kappa, rescale = TRUE) {
 #' @param node A node number describing the clade(s) to be transformed.
 #' @param delta The value or values of lambda by which to transform the specified clade(s).
 #' @name localDelta
+#' @keywords internal
 
 # TODO(hfg): Add rescale option. Find the original root to tip length of the clade, divide it by the new root to tip length, and then multiply the new branch lengths by that.
 
@@ -112,6 +116,7 @@ localDelta <- function(tree, node, delta, rescale = TRUE) {
 #' @param node The node that the transformation should be applied at (includes all branches and nodes downstream of here).
 #' @param a The EB parameter for the transformation.
 #' @param rescale Rescale the tree after transformation? Defailts to TRUE.
+#' @keywords internal
 
 localEB <- function(tree, node, a, rescale = TRUE) {
   print("Warning! This might be wrong (24/02/2017)")

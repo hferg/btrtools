@@ -14,3 +14,4 @@ getTaxa(x, subtrees)
 \description{
 This gets the taxa names of a particular subtree from a list of all subtrees comprising a full tree.
 }
+\keyword{internal}

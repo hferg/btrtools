@@ -16,3 +16,4 @@ localKappa(tree, node, kappa, rescale = TRUE)
 \description{
 A function that transforms branch lengths according to Kappa.
 }
+\keyword{internal}

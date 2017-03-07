@@ -16,3 +16,4 @@ getMRCAbtr(x, tree, rjtaxa)
 \description{
 This an extension of apes's getMRCA that enables the return of a tip, or an MRCA. Translates taxa codes (BayesTraits) to proper tip labels. Useful only in post-processing.
 }
+\keyword{internal}

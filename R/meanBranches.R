@@ -14,7 +14,7 @@ meanBranches <- function(reftree, trees, burnin = 0, thinning = 1, pbar = FALSE)
   } else {
     trees <- read.nexus(trees)
   }
-  
+  c
   trees <- trees[seq.int(burnin, length(trees), thinning)]
   
   #bls <- vector(mode = "numeric", length = length(reftree$edge.length))

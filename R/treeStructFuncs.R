@@ -36,6 +36,7 @@ getDescs <- function(tree, node, nds = NULL) {
 #' Gets the path length from the root to the position of a particular node.
 #' @export
 #' @name getPL
+#' @keywords internal
 
 getPL <- function(tree, startnode = NA, node) {
 
@@ -102,6 +103,7 @@ getTipNames <- function(tree, node) {
 #' @param subtrees A list of subtrees, as written by BayesTraits, and read in during post-processing
 #' @param node The node number of interest.
 #' @name getTaxa
+#' @keywords internal
 
 getTaxa <- function(x, subtrees) {
   taxa <- subtrees[subtrees$node == x, ]
@@ -118,6 +120,7 @@ getTaxa <- function(x, subtrees) {
 #' @param tree A phylogeny of class "phylo" (generally the time tree used as input to BayesTraits)
 #' @param rjtaxa The taxa translations as output from BayesTraits
 #' @name getMRCAbtr
+#' @keywords internal
 
 getMRCAbtr <- function(x, tree, rjtaxa) {
   if (length(x) == 1) {

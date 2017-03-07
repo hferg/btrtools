@@ -5,6 +5,7 @@
 #' returns them.
 #' @param rj_output partially processed RJ output.
 #' @param counts The counts table.
+#' @keywords internal
 #' @name scalarSearch
 scalarSearch <- function(rj_output, counts, fullmrcas) {
   alltypes <- vector(mode = "list", length = nrow(rj_output))

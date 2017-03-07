@@ -17,3 +17,4 @@ createCountsTable(extree, meanbl)
 createCounts
 Creates the counts table for the rjpp.
 }
+\keyword{internal}

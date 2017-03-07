@@ -20,3 +20,4 @@ multiplyNodes(scales, name, tree, Node_effects)
 multiplyNodes
 Works out the cumulative effect of linear scalars on branches per iteration
 }
+\keyword{internal}

@@ -2,6 +2,7 @@
 #' modeStat
 #' Calculate the mode.
 #' @name modeStat
+#' @keywords internal
 
 modeStat <- function(x, log = FALSE) 
 {  

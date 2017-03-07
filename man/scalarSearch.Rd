@@ -18,3 +18,4 @@ scalarSearch
 Searches through the posterior of an RJ continuous model for scalars and 
 returns them.
 }
+\keyword{internal}
