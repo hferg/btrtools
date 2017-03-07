@@ -225,6 +225,7 @@ scalarSearch <- function(rj_output, counts, fullmrcas) {
 #' modeStat
 #' Calculate the mode.
 #' @name modeStat
+#' @export
 
 modeStat <- function(x, log = FALSE) 
 {  
