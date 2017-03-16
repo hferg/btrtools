@@ -7,16 +7,16 @@ rateShifts <- function(PP, threshold, gradientcols, colour) {
   percscaled <- apply(PP$scalars[[1]][2:nrow(PP$scalars[[1]]), ], 1, function(x) sum(x != 1)) / PP$niter
 
   if (threshold == 0) {
-    # Work out the colour ramp.
-    # First turn the number of times scaled into percentages.
     edge.cols <- plotrix::color.scale(percscaled, extremes = gradientcols, na.color = NA)
 
   } else if (threshold > 0) {
     nodes <- as.numeric(names(percscaled[percscaled >= threshold]))
     edge.cols <- rep("black", nrow(PP$meantree$edge))
     edge.cols[PP$meantree$edge[ , 2] %in% nodes] <- colour
+  } else if (threshold == "relative") {
+    edge.cols <- plotrix::color.scale(log(PP$data$meanRate[2:nrow(PP$data)]), extremes = gradientcols, na.color = NA)
   }
-  edge.cols
+  
 }
 
 ##############################################################################
@@ -28,11 +28,18 @@ rateShifts <- function(PP, threshold, gradientcols, colour) {
 
 transShifts <- function(PP, threshold, cl, transparency, relativetrans, 
   nodescaling, colour, nodecex) {
+  if (threshold == "relative") {
+    stop("Relative threshold not valid for total rate scalars.")
+  }
+
   if (threshold == 0) {
     threshold <- 1 / PP$niter
   }
   
+  
   nodes <- PP$data$descNode[which((PP$data[ , cl] / PP$niter) >= threshold)]
+  
+
   pprobs <- PP$data[which((PP$data[ , cl] / PP$niter) >= threshold) , cl] / PP$niter
 
   if (length(nodes) == 0) {
@@ -58,6 +65,10 @@ transShifts <- function(PP, threshold, cl, transparency, relativetrans,
 
   if (nodescaling) {
     nodecex = nodecex * pprobs
+  }
+
+  if (cl == "nOrgnBRate") {
+    nodes <- which(tree$edge[ , 2] %in% nodes)
   }
 
   list(nodes = nodes, colours = col, alphas = alphas, nodecex = nodecex)
@@ -117,11 +128,8 @@ plotShifts <- function(PP, scalar, threshold = 0, nodecex = 2, scaled = "time", 
     edge.cols <- "black"
 
     if (isDefined(rate.edges)) {
-      if (is.null(PP$scalars)) {
-        stop("No rate scalars in posterior output.")
-      } else {
-        edge.cols <- rateShifts(PP, threshold = rate.edges, gradientcols, colour)
-      }
+      try(if(is.null(PP$scalars)) stop("No rate scalars in posterior output."))
+      edge.cols <- rateShifts(PP, threshold = rate.edges, gradientcols, colour)
     }
     
     node_info <- transShifts(PP, threshold, cl, transparency, relativetrans,
@@ -150,8 +158,13 @@ plotShifts <- function(PP, scalar, threshold = 0, nodecex = 2, scaled = "time", 
   plotPhylo(tree, tips = tips, edge.col = edge.cols, scale = scalebar, ...)
   
   if (scalar != "rate") {
-    nodelabels(node = node_info$nodes, bg = node_info$col, 
-      pch = shp, cex = node_info$nodecex)
+    if (scalar == "branch") {
+      edgelabels(edge = node_info$nodes, bg = node_info$col, 
+        pch = shp, cex = node_info$nodecex)
+    } else {
+      nodelabels(node = node_info$nodes, bg = node_info$col, 
+        pch = shp, cex = node_info$nodecex)
+    }
   }
 }
 
