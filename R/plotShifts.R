@@ -54,7 +54,7 @@ transShifts <- function(PP, threshold, cl, transparency, relativetrans,
   col <- vector(mode = "character", length = length(nodes))  
 
   col <- sapply(1:length(alphas), 
-    function(x) makeTransparent(colour = colour, alpha = alphas[x]))
+    function(x) makeTrans(colour = colour, alpha = alphas[x]))
 
   if (nodescaling) {
     nodecex = nodecex * pprobs
