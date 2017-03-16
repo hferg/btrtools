@@ -89,9 +89,9 @@ transShifts <- function(PP, threshold, cl, transparency, relativetrans,
 #' @export
 #' 
 plotShifts <- function(PP, scalar, threshold = 0, nodecex = 2, scaled = "time", scalebar = TRUE,
-  measure = "median", excludeones = FALSE, relativetrans = FALSE, transparency = FALSE,
-  gradientcols = c("dodgerblue", "firebrick1"), rate.edges = NULL, colour = "red", 
-  shp = 21, tips = FALSE, ...) {
+  measure = "median", excludeones = FALSE, relativetrans = FALSE, nodescaling = TRUE, 
+  transparency = FALSE, gradientcols = c("dodgerblue", "firebrick1"), rate.edges = NULL, 
+  colour = "red", shp = 21, tips = FALSE, ...) {
 
   if (scalar == "delta") {
     cl <- "nOrgnDelta"
@@ -102,15 +102,15 @@ plotShifts <- function(PP, scalar, threshold = 0, nodecex = 2, scaled = "time", 
   } else if (scalar == "lambda") {
     cl <- "nOrgnLambda"
     mode <- "trans"
-  } else if (scalar == "rate") {
-    cl <- "nOrgnScalar"
-    mode <- "rate"
   } else if (scalar == "branch") {
     cl <- "nOrgnBRate"
     mode <- "trans"
   } else if (scalar == "node") {
     cl <- "nOrgnNRate"
     mode <- "trans"
+  } else if (scalar == "rate") {
+    cl <- "nOrgnScalar"
+    mode <- "rate"
   }
 
   if (mode == "trans") {

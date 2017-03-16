@@ -6,7 +6,7 @@
 \usage{
 plotShifts(PP, scalar, threshold = 0, nodecex = 2, scaled = "time",
   scalebar = TRUE, measure = "median", excludeones = FALSE,
-  relativetrans = FALSE, transparency = FALSE,
+  relativetrans = FALSE, nodescaling = TRUE, transparency = FALSE,
   gradientcols = c("dodgerblue", "firebrick1"), rate.edges = NULL,
   colour = "red", shp = 21, tips = FALSE, ...)
 }
@@ -27,6 +27,8 @@ plotShifts(PP, scalar, threshold = 0, nodecex = 2, scaled = "time",
 
 \item{relativetrans}{If TRUE (defaults to FALSE) the scale of transparency will go from the threshold (totally transparent) to the maximum presence (full opacity).}
 
+\item{nodescaling}{Scale node symbols according to posterior probability of shift (default).}
+
 \item{transparency}{Adjust node symbol transparency according to posterior probability? Defaults to FALSE.}
 
 \item{gradientcols}{A vector of two colours - the min and max colours used when colouring the tree according to percentage time rate scaled (when threshold = 0) or using rate.edges.}
@@ -40,8 +42,6 @@ plotShifts(PP, scalar, threshold = 0, nodecex = 2, scaled = "time",
 \item{tips}{Show tip labels?}
 
 \item{exludeones}{If plotting according to a threshold of significance, should 1s (i.e. no scalar) be excluded from the posterior when calculating average scalar?}
-
-\item{nodescaling}{Scale node symbols according to posterior probability of shift (default).}
 }
 \description{
 Plots the locations of the origins of scalars from the postprocessor output of bayestraits.
