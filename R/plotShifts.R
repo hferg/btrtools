@@ -3,7 +3,7 @@
 #' Generates the edge colours to colour edges by total rate.
 #' @name rateShifts
 #' @keywords internal
-rateShifts <- function(PP, threshold, gradientcols) {
+rateShifts <- function(PP, threshold, gradientcols, colour) {
   percscaled <- apply(PP$scalars[[1]][2:nrow(PP$scalars[[1]]), ], 1, function(x) sum(x != 1)) / PP$niter
 
   if (threshold == 0) {
@@ -120,7 +120,7 @@ plotShifts <- function(PP, scalar, threshold = 0, nodecex = 2, scaled = "time", 
       if (is.null(PP$scalars)) {
         stop("No rate scalars in posterior output.")
       } else {
-        edge.cols <- rateShifts(PP, threshold = rate.edges, gradientcols)
+        edge.cols <- rateShifts(PP, threshold = rate.edges, gradientcols, colour)
       }
     }
     
@@ -128,7 +128,7 @@ plotShifts <- function(PP, scalar, threshold = 0, nodecex = 2, scaled = "time", 
       nodescaling, colour, nodecex)
 
   } else if (mode == "rate") {
-    edge.cols <- rateShifts(PP, threshold, gradientcols)
+    edge.cols <- rateShifts(PP, threshold, gradientcols, colour)
   }
 
   if (scaled == "time") {
