@@ -2,7 +2,7 @@
 % Please edit documentation in R/plotShifts.R
 \name{plotShifts}
 \alias{plotShifts}
-\title{plotShifts}
+\title{scaleByShifts}
 \usage{
 plotShifts(PP, scalar, threshold = 0, nodecex = 2, scaled = "time",
   scalebar = TRUE, measure = "median", excludeones = FALSE,
@@ -41,9 +41,11 @@ plotShifts(PP, scalar, threshold = 0, nodecex = 2, scaled = "time",
 
 \item{tips}{Show tip labels?}
 
+\item{plotShifts}{Plots the locations of the origins of scalars from the postprocessor output of bayestraits.
+CURRENTLY WORKS ONLY FOR DELTAS.}
+
 \item{exludeones}{If plotting according to a threshold of significance, should 1s (i.e. no scalar) be excluded from the posterior when calculating average scalar?}
 }
 \description{
-Plots the locations of the origins of scalars from the postprocessor output of bayestraits.
-CURRENTLY WORKS ONLY FOR DELTAS.
+Scales a tree by the median significant shifts, as identified by the threshold in plotShifts.
 }

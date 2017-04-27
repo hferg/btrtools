@@ -2,6 +2,7 @@
 
 export(compPosts)
 export(compareStones)
+export(findShifts)
 export(getDescs)
 export(getPL)
 export(getParams)

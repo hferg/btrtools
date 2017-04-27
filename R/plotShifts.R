@@ -16,7 +16,7 @@ rateShifts <- function(PP, threshold, gradientcols, colour) {
   } else if (threshold == "relative") {
     edge.cols <- plotrix::color.scale(log(PP$data$meanRate[2:nrow(PP$data)]), extremes = gradientcols, na.color = NA)
   }
-  
+  return(edge.cols)  
 }
 
 ##############################################################################
@@ -73,6 +73,12 @@ transShifts <- function(PP, threshold, cl, transparency, relativetrans,
 
   list(nodes = nodes, colours = col, alphas = alphas, nodecex = nodecex)
 }
+
+################################################################################
+#' scaleByShifts
+#' 
+#' Scales a tree by the median significant shifts, as identified by the threshold in plotShifts.
+#' @param
 
 ################################################################################
 #' plotShifts
@@ -151,8 +157,11 @@ plotShifts <- function(PP, scalar, threshold = 0, nodecex = 2, scaled = "time", 
     tree <- PP$meantree
     tree$edge.length <- PP$data$modeBL[2:nrow(PP$data)]
   } else if (scaled == "threshold") {
-    tree <- significantTransformation(PP = PP, scalar = scalar, threshold = threshold, 
-      measure = measure, excludeones = excludeones)
+      if (mode == "rate") {
+        tree <- tree
+      } else {
+        # tree <- shiftScaledTree() #### IN DEV.
+      }
   }
 
   plotPhylo(tree, tips = tips, edge.col = edge.cols, scale = scalebar, ...)
