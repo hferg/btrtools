@@ -26,7 +26,7 @@ rateShifts <- function(PP, threshold, gradientcols, colour) {
 #' @name transShifts
 #' @keywords internal
 
-transShifts <- function(PP, threshold, cl, transparency, relativetrans, 
+transShifts <- function(PP, threshold, cl, tree, transparency, relativetrans, 
   nodescaling, colour, nodecex) {
   if (threshold == "relative") {
     stop("Relative threshold not valid for total rate scalars.")
@@ -75,12 +75,6 @@ transShifts <- function(PP, threshold, cl, transparency, relativetrans,
 }
 
 ################################################################################
-#' scaleByShifts
-#' 
-#' Scales a tree by the median significant shifts, as identified by the threshold in plotShifts.
-#' @param
-
-################################################################################
 #' plotShifts
 #' 
 #' Plots the locations of the origins of scalars from the postprocessor output of bayestraits.
@@ -105,10 +99,10 @@ transShifts <- function(PP, threshold, cl, transparency, relativetrans,
 #' @import plotrix
 #' @export
 #' 
-plotShifts <- function(PP, scalar, threshold = 0, nodecex = 2, scaled = "time", scalebar = TRUE,
+plotShifts <- function(PP, scalar, threshold = 0, threshold2 = 0, nodecex = 2, scaled = "time", scalebar = TRUE,
   measure = "median", excludeones = FALSE, relativetrans = FALSE, nodescaling = TRUE, 
   transparency = FALSE, gradientcols = c("dodgerblue", "firebrick1"), rate.edges = NULL, 
-  colour = "red", shp = 21, tips = FALSE, ...) {
+  colour = "red", colour2 = "green",  shp = 21, tips = FALSE, ...) {
 
   if (scalar == "delta") {
     cl <- "nOrgnDelta"
@@ -128,23 +122,11 @@ plotShifts <- function(PP, scalar, threshold = 0, nodecex = 2, scaled = "time", 
   } else if (scalar == "rate") {
     cl <- "nOrgnScalar"
     mode <- "rate"
+  } else if (scalar == "nodebranch") {
+    cl <- c("nOrgnNRate", "nOrgnBRate")
+    mode <- "doubletrans"
   }
-
-  if (mode == "trans") {
-    edge.cols <- "black"
-
-    if (isDefined(rate.edges)) {
-      try(if(is.null(PP$scalars)) stop("No rate scalars in posterior output."))
-      edge.cols <- rateShifts(PP, threshold = rate.edges, gradientcols, colour)
-    }
-    
-    node_info <- transShifts(PP, threshold, cl, transparency, relativetrans,
-      nodescaling, colour, nodecex)
-
-  } else if (mode == "rate") {
-    edge.cols <- rateShifts(PP, threshold, gradientcols, colour)
-  }
-
+  
   if (scaled == "time") {
     tree <- PP$meantree
     tree$edge.length <- PP$data$orgBL[2:nrow(PP$data)]
@@ -157,11 +139,40 @@ plotShifts <- function(PP, scalar, threshold = 0, nodecex = 2, scaled = "time", 
     tree <- PP$meantree
     tree$edge.length <- PP$data$modeBL[2:nrow(PP$data)]
   } else if (scaled == "threshold") {
-      if (mode == "rate") {
-        tree <- tree
-      } else {
-        # tree <- shiftScaledTree() #### IN DEV.
-      }
+    if (mode == "rate") {
+      tree <- tree
+    } else {
+      # tree <- shiftScaledTree() #### IN DEV.
+    }
+  }
+
+  if (mode == "trans") {
+    edge.cols <- "black"
+
+    if (isDefined(rate.edges)) {
+      try(if(is.null(PP$scalars)) stop("No rate scalars in posterior output."))
+      edge.cols <- rateShifts(PP, threshold = rate.edges, gradientcols, colour)
+    }
+    
+    node_info <- transShifts(PP, threshold, cl, tree, transparency, relativetrans,
+      nodescaling, colour, nodecex)
+
+  } else if (mode == "doubletrans") {
+    edge.cols <- "black"
+
+    if (isDefined(rate.edges)) {
+      try(if(is.null(PP$scalars)) stop("No rate scalars in posterior output."))
+      edge.cols <- rateShifts(PP, threshold = rate.edges, gradientcols, colour)
+    }
+    
+    node_info <- transShifts(PP, threshold, cl[1], tree, transparency, relativetrans,
+      nodescaling, colour, nodecex)
+
+    branch_info <- transShifts(PP, threshold2, cl[2], tree, transparency, relativetrans,
+      nodescaling, colour2, nodecex)   
+
+  } else if (mode == "rate") {
+    edge.cols <- rateShifts(PP, threshold, gradientcols, colour)
   }
 
   plotPhylo(tree, tips = tips, edge.col = edge.cols, scale = scalebar, ...)
@@ -170,6 +181,11 @@ plotShifts <- function(PP, scalar, threshold = 0, nodecex = 2, scaled = "time", 
     if (scalar == "branch") {
       edgelabels(edge = node_info$nodes, bg = node_info$col, 
         pch = shp, cex = node_info$nodecex)
+    } else if (scalar == "nodebranch") {
+      nodelabels(node = node_info$nodes, bg = node_info$col, 
+        pch = shp, cex = node_info$nodecex)
+      edgelabels(edge = branch_info$nodes, bg = branch_info$col, 
+        pch = shp, cex = branch_info$nodecex)
     } else {
       nodelabels(node = node_info$nodes, bg = node_info$col, 
         pch = shp, cex = node_info$nodecex)

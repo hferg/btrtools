@@ -6,8 +6,8 @@
 Generates the node labels, edge.colours and transparencies to plot the
 location of transformations in a posterior.}
 \usage{
-transShifts(PP, threshold, cl, transparency, relativetrans, nodescaling, colour,
-  nodecex)
+transShifts(PP, threshold, cl, tree, transparency, relativetrans, nodescaling,
+  colour, nodecex)
 }
 \description{
 transShifts
